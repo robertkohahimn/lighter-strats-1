@@ -9,26 +9,36 @@ class LighterStrategyError(Exception):
 class InsufficientBalanceError(LighterStrategyError):
     """Raised when wallet has insufficient balance."""
     
-    def __init__(self, wallet_address: str, current_balance: float, required_balance: float):
-        self.wallet_address = wallet_address
-        self.current_balance = current_balance
-        self.required_balance = required_balance
-        super().__init__(
-            f"Insufficient balance in wallet {wallet_address}: "
-            f"current={current_balance:.2f}, required={required_balance:.2f}"
-        )
+    def __init__(self, message: str = None, wallet_address: str = None, current_balance: float = None, required_balance: float = None):
+        if message:
+            super().__init__(message)
+        elif wallet_address and current_balance is not None and required_balance is not None:
+            self.wallet_address = wallet_address
+            self.current_balance = current_balance
+            self.required_balance = required_balance
+            super().__init__(
+                f"Insufficient balance in wallet {wallet_address}: "
+                f"current={current_balance:.2f}, required={required_balance:.2f}"
+            )
+        else:
+            super().__init__("Insufficient balance")
 
 
 class OrderCreationError(LighterStrategyError):
     """Raised when order creation fails."""
     
-    def __init__(self, wallet_address: str, order_type: str, reason: str):
-        self.wallet_address = wallet_address
-        self.order_type = order_type
-        self.reason = reason
-        super().__init__(
-            f"Failed to create {order_type} order for wallet {wallet_address}: {reason}"
-        )
+    def __init__(self, message: str = None, wallet_address: str = None, order_type: str = None, reason: str = None):
+        if message:
+            super().__init__(message)
+        elif wallet_address and order_type and reason:
+            self.wallet_address = wallet_address
+            self.order_type = order_type
+            self.reason = reason
+            super().__init__(
+                f"Failed to create {order_type} order for wallet {wallet_address}: {reason}"
+            )
+        else:
+            super().__init__("Order creation failed")
 
 
 class LiquidationDetectedError(LighterStrategyError):
@@ -64,6 +74,13 @@ class ConnectionError(LighterStrategyError):
         super().__init__(
             f"Connection failed to {endpoint} after {retry_count} retries: {reason}"
         )
+
+
+class WalletConnectionError(LighterStrategyError):
+    """Raised when wallet connection fails."""
+    
+    def __init__(self, message: str):
+        super().__init__(message)
 
 
 class AuthenticationError(LighterStrategyError):

@@ -8,7 +8,22 @@ from typing import List, Dict, Optional, Any
 from datetime import datetime
 from dataclasses import dataclass, field
 from enum import Enum
-from lighter_client import LighterClient
+# Mock LighterClient for now - will be replaced with actual implementation
+class LighterClient:
+    def __init__(self, **kwargs):
+        pass
+    
+    async def create_order(self, **kwargs):
+        return {'order_id': 'mock_order_id'}
+    
+    async def get_order(self, **kwargs):
+        return {'status': 'open', 'filled_size': '0'}
+    
+    async def cancel_order(self, **kwargs):
+        return {'success': True}
+    
+    async def close(self):
+        pass
 from .utils.logger import logger
 from .utils.exceptions import OrderCreationError
 
