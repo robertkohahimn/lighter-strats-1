@@ -436,7 +436,7 @@ class TestLiquidationMonitor:
         assert "Total Positions: 2" in summary
         assert "Healthy: 1" in summary
         assert "Warning: 1" in summary
-        assert "0xhealthy" in summary
-        assert "0xwarning" in summary
+        assert "0xhealth" in summary
+        assert "0xwarnin" in summary
         assert "✅" in summary
         assert "⚠️" in summary

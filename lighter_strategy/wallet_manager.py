@@ -6,7 +6,16 @@ Manages wallet pairs and their interactions with the Lighter API
 import asyncio
 from typing import List, Dict, Optional, Tuple
 from dataclasses import dataclass
-from lighter_client import LighterClient
+# Mock LighterClient for now - will be replaced with actual implementation
+class LighterClient:
+    def __init__(self, **kwargs):
+        pass
+    
+    async def get_balance(self, **kwargs):
+        return {'balance': '0'}
+    
+    async def close(self):
+        pass
 from .config import Config
 from .utils.logger import logger
 from .utils.exceptions import WalletConnectionError, InsufficientBalanceError

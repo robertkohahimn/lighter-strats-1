@@ -7,3 +7,8 @@
 6. Make every task and code change you do as simple as possible. We want to avoid making any massive or complex changes. Every change should impact as little code as possible. Everything is about simplicity
 7. Finally, add a review section to the projectplan.md file with a summary of the changes you made and any other relevant information
 8. After completing a task on projectplan.md checklist, mark it as completed
+
+## Project Rules
+During the integration with Lighter API/SDK, check very carefully the documentations to make sure we get the correct implementation of the API/SDK:
+- Python SDK: https://github.com/elliottech/lighter-python
+- API docs: https://apibetadocs.lighter.xyz/

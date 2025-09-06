@@ -110,8 +110,11 @@ class TestWalletManager:
         
         balances = await wallet_manager.check_balances()
         
-        assert len(balances) == 1
+        assert len(balances) == 2
         assert mock_wallet_pair.address_a in balances
+        assert mock_wallet_pair.address_b in balances
+        assert balances[mock_wallet_pair.address_a] == 1000.0
+        assert balances[mock_wallet_pair.address_b] == 0.0
     
     @pytest.mark.asyncio
     async def test_validate_minimum_usdc_all_sufficient(self, wallet_manager, mock_config):

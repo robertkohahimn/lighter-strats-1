@@ -118,38 +118,38 @@ lighter_strategy/
 ## Phase 3: Main Strategy Implementation
 
 ### 3.1 Strategy Orchestrator
-- [ ] Create main.py
-- [ ] Implement LighterStrategy class:
-  - [ ] __init__ with wallet pairs and config
-  - [ ] async run_strategy() main loop
-  - [ ] setup_orders(buy_price, sell_price) method
-  - [ ] monitor_loop() for continuous monitoring
-  - [ ] handle_liquidation() emergency handler
-  - [ ] withdraw_all_funds() method
-  - [ ] Graceful shutdown handler
+- [x] Create main.py
+- [x] Implement LighterStrategy class:
+  - [x] __init__ with wallet pairs and config
+  - [x] async run_strategy() main loop
+  - [x] setup_orders(buy_price, sell_price) method
+  - [x] monitor_loop() for continuous monitoring
+  - [x] handle_liquidation() emergency handler
+  - [x] withdraw_all_funds() method
+  - [x] Graceful shutdown handler
 
 ### 3.2 Command Line Interface
-- [ ] Implement argument parser:
-  - [ ] --wallet-pairs flag for wallet pair input
-  - [ ] --market flag (default: SOL)
-  - [ ] --buy-price flag
-  - [ ] --sell-price flag
-  - [ ] --min-usdc flag (default: 500)
-  - [ ] --config-file flag for config file path
-  - [ ] --dry-run flag for testing without execution
-- [ ] Add input validation
-- [ ] Implement help documentation
+- [x] Implement argument parser:
+  - [x] --wallet-pairs flag for wallet pair input
+  - [x] --market flag (default: SOL)
+  - [x] --buy-price flag
+  - [x] --sell-price flag
+  - [x] --min-usdc flag (default: 500)
+  - [x] --config-file flag for config file path
+  - [x] --dry-run flag for testing without execution
+- [x] Add input validation
+- [x] Implement help documentation
 
 ### 3.3 Async Architecture
-- [ ] Implement async main() function
-- [ ] Create concurrent task management:
-  - [ ] Balance validation task
-  - [ ] Order placement task
-  - [ ] Fill monitoring task
-  - [ ] Liquidation monitoring task
-- [ ] Implement task coordination with asyncio.gather()
-- [ ] Add proper exception handling in async context
-- [ ] Implement graceful task cancellation
+- [x] Implement async main() function
+- [x] Create concurrent task management:
+  - [x] Balance validation task
+  - [x] Order placement task
+  - [x] Fill monitoring task
+  - [x] Liquidation monitoring task
+- [x] Implement task coordination with asyncio.gather()
+- [x] Add proper exception handling in async context
+- [x] Implement graceful task cancellation
 
 ## Phase 4: Monitoring & Risk Management
 

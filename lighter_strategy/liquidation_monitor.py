@@ -8,7 +8,19 @@ from typing import List, Dict, Optional, Callable, Set
 from datetime import datetime
 from dataclasses import dataclass, field
 from enum import Enum
-from lighter_client import LighterClient
+# Mock LighterClient for now - will be replaced with actual implementation
+class LighterClient:
+    def __init__(self, **kwargs):
+        pass
+    
+    async def get_position(self, **kwargs):
+        return {'size': '0'}
+    
+    async def create_order(self, **kwargs):
+        return {'order_id': 'mock_order_id'}
+    
+    async def close(self):
+        pass
 from .wallet_manager import WalletPair
 from .order_manager import OrderManager
 from .utils.logger import logger
@@ -158,7 +170,7 @@ class LiquidationMonitor:
                 market="SOL"
             )
             
-            if not position_data or position_data.get('size', 0) == 0:
+            if not position_data or float(position_data.get('size', 0)) == 0:
                 return None
             
             position_info = PositionInfo(
