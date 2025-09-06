@@ -1,0 +1,14 @@
+[
+    {
+        "address_a": "0x1234567890abcdef1234567890abcdef12345678",
+        "address_b": "0xabcdef1234567890abcdef1234567890abcdef12",
+        "private_key_a": "YOUR_PRIVATE_KEY_A_HERE",
+        "private_key_b": "YOUR_PRIVATE_KEY_B_HERE"
+    },
+    {
+        "address_a": "0x2234567890abcdef1234567890abcdef12345678",
+        "address_b": "0xbbcdef1234567890abcdef1234567890abcdef12",
+        "private_key_a": "YOUR_PRIVATE_KEY_A_HERE",
+        "private_key_b": "YOUR_PRIVATE_KEY_B_HERE"
+    }
+]
