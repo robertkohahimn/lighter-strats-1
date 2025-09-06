@@ -57,63 +57,63 @@ lighter_strategy/
 ## Phase 2: Core Components Development
 
 ### 2.1 Wallet Manager Module
-- [ ] Create wallet_manager.py
-- [ ] Implement WalletPair class:
-  - [ ] Properties for address_a and address_b
-  - [ ] API client initialization for each address
-  - [ ] Wallet validation methods
-- [ ] Implement WalletManager class:
-  - [ ] initialize_wallets() method
-  - [ ] check_balances() method with USDC balance retrieval
-  - [ ] validate_minimum_usdc() with configurable threshold
-  - [ ] get_wallet_pairs() method
-  - [ ] Error handling for wallet connection issues
+- [x] Create wallet_manager.py
+- [x] Implement WalletPair class:
+  - [x] Properties for address_a and address_b
+  - [x] API client initialization for each address
+  - [x] Wallet validation methods
+- [x] Implement WalletManager class:
+  - [x] initialize_wallets() method
+  - [x] check_balances() method with USDC balance retrieval
+  - [x] validate_minimum_usdc() with configurable threshold
+  - [x] get_wallet_pairs() method
+  - [x] Error handling for wallet connection issues
 
 ### 2.2 Balance Checker Module
-- [ ] Create balance_checker.py
-- [ ] Implement BalanceChecker class:
-  - [ ] get_usdc_balance(wallet_address) method
-  - [ ] check_all_balances(wallet_pairs) method
-  - [ ] validate_minimum_balance(balance, threshold) method
-  - [ ] format_balance_report() for logging
-  - [ ] Implement caching for balance queries
+- [x] Create balance_checker.py
+- [x] Implement BalanceChecker class:
+  - [x] get_usdc_balance(wallet_address) method
+  - [x] check_all_balances(wallet_pairs) method
+  - [x] validate_minimum_balance(balance, threshold) method
+  - [x] format_balance_report() for logging
+  - [x] Implement caching for balance queries
 
 ### 2.3 Order Manager Module
-- [ ] Create order_manager.py
-- [ ] Implement Order data class:
-  - [ ] Order ID, type, status, price, size
-  - [ ] Timestamp tracking
-- [ ] Implement OrderManager class:
-  - [ ] create_limit_buy_order(wallet, market, price, size) method
-  - [ ] create_limit_sell_order(wallet, market, price, size) method
-  - [ ] get_order_status(order_id) method
-  - [ ] cancel_order(order_id) method
-  - [ ] get_filled_orders() method
-  - [ ] monitor_order_fills() async method
-  - [ ] Implement order validation before submission
+- [x] Create order_manager.py
+- [x] Implement Order data class:
+  - [x] Order ID, type, status, price, size
+  - [x] Timestamp tracking
+- [x] Implement OrderManager class:
+  - [x] create_limit_buy_order(wallet, market, price, size) method
+  - [x] create_limit_sell_order(wallet, market, price, size) method
+  - [x] get_order_status(order_id) method
+  - [x] cancel_order(order_id) method
+  - [x] get_filled_orders() method
+  - [x] monitor_order_fills() async method
+  - [x] Implement order validation before submission
 
 ### 2.4 Liquidation Monitor Module
-- [ ] Create liquidation_monitor.py
-- [ ] Implement LiquidationMonitor class:
-  - [ ] monitor_liquidations(wallet_addresses) async method
-  - [ ] check_liquidation_status(wallet) method
-  - [ ] trigger_emergency_close(wallet_pair) method
-  - [ ] close_opposite_trade(wallet_pair, liquidated_side) method
-  - [ ] Implement WebSocket connection for real-time monitoring
-  - [ ] Add liquidation event callbacks
+- [x] Create liquidation_monitor.py
+- [x] Implement LiquidationMonitor class:
+  - [x] monitor_liquidations(wallet_addresses) async method
+  - [x] check_liquidation_status(wallet) method
+  - [x] trigger_emergency_close(wallet_pair) method
+  - [x] close_opposite_trade(wallet_pair, liquidated_side) method
+  - [x] Implement WebSocket connection for real-time monitoring
+  - [x] Add liquidation event callbacks
 
 ### 2.5 Utilities Module
-- [ ] Create utils/logger.py:
-  - [ ] Configure loguru with rotation
-  - [ ] Add custom formatters
-  - [ ] Implement log levels (DEBUG, INFO, WARNING, ERROR)
-  - [ ] Add file and console handlers
-- [ ] Create utils/exceptions.py:
-  - [ ] InsufficientBalanceError
-  - [ ] OrderCreationError
-  - [ ] LiquidationDetectedError
-  - [ ] WithdrawalError
-  - [ ] ConnectionError with retry logic
+- [x] Create utils/logger.py:
+  - [x] Configure loguru with rotation
+  - [x] Add custom formatters
+  - [x] Implement log levels (DEBUG, INFO, WARNING, ERROR)
+  - [x] Add file and console handlers
+- [x] Create utils/exceptions.py:
+  - [x] InsufficientBalanceError
+  - [x] OrderCreationError
+  - [x] LiquidationDetectedError
+  - [x] WithdrawalError
+  - [x] ConnectionError with retry logic
 
 ## Phase 3: Main Strategy Implementation
 
