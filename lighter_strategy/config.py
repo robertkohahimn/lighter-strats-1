@@ -112,7 +112,11 @@ class Settings(BaseSettings):
     @classmethod
     def from_env(cls) -> "Settings":
         """Load settings from environment variables."""
-        return cls()
+        try:
+            return cls()
+        except Exception:
+            # If loading from env fails, return with defaults
+            return cls(wallet_pairs=[])
     
     @classmethod
     def from_file(cls, config_file: Path) -> "Settings":

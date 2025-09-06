@@ -471,8 +471,8 @@ async def main():
     parser.add_argument(
         "--wallet-pairs",
         type=str,
-        required=True,
-        help="Wallet pairs as 'addr1a,addr1b;addr2a,addr2b' or path to JSON file"
+        default="",
+        help="Wallet pairs as 'addr1a,addr1b;addr2a,addr2b' or path to JSON file (required for trading)"
     )
     
     # Trading parameters
@@ -542,33 +542,40 @@ async def main():
     # Parse wallet pairs - either from file or command line
     wallet_data = []
     
-    # Check if it's a file path
-    if args.wallet_pairs.endswith('.json'):
-        wallet_pairs_path = Path(args.wallet_pairs)
-        if not wallet_pairs_path.exists():
-            logger.error(f"Wallet pairs file not found: {wallet_pairs_path}")
-            sys.exit(1)
-        with open(wallet_pairs_path) as f:
-            wallet_data = json.load(f)
+    if args.wallet_pairs:  # Only parse if wallet pairs provided
+        # Check if it's a file path
+        if args.wallet_pairs.endswith('.json'):
+            wallet_pairs_path = Path(args.wallet_pairs)
+            if not wallet_pairs_path.exists():
+                logger.error(f"Wallet pairs file not found: {wallet_pairs_path}")
+                sys.exit(1)
+            with open(wallet_pairs_path) as f:
+                wallet_data = json.load(f)
+        else:
+            # Parse command-line format: "addr1a,addr1b;addr2a,addr2b"
+            try:
+                pairs = args.wallet_pairs.split(';')
+                for pair in pairs:
+                    if not pair.strip():  # Skip empty pairs
+                        continue
+                    addresses = pair.strip().split(',')
+                    if len(addresses) != 2:
+                        raise ValueError(f"Invalid wallet pair format: {pair}")
+                    wallet_data.append({
+                        'address_a': addresses[0].strip(),
+                        'address_b': addresses[1].strip(),
+                        'private_key_a': None,  # Will need to be provided separately
+                        'private_key_b': None   # Will need to be provided separately
+                    })
+                if wallet_data:
+                    logger.info(f"Parsed {len(wallet_data)} wallet pairs from command line")
+            except Exception as e:
+                logger.error(f"Failed to parse wallet pairs: {e}")
+                logger.error("Format should be: 'addr1a,addr1b;addr2a,addr2b' or path to JSON file")
+                sys.exit(1)
     else:
-        # Parse command-line format: "addr1a,addr1b;addr2a,addr2b"
-        try:
-            pairs = args.wallet_pairs.split(';')
-            for pair in pairs:
-                addresses = pair.strip().split(',')
-                if len(addresses) != 2:
-                    raise ValueError(f"Invalid wallet pair format: {pair}")
-                wallet_data.append({
-                    'address_a': addresses[0].strip(),
-                    'address_b': addresses[1].strip(),
-                    'private_key_a': None,  # Will need to be provided separately
-                    'private_key_b': None   # Will need to be provided separately
-                })
-            logger.info(f"Parsed {len(wallet_data)} wallet pairs from command line")
-        except Exception as e:
-            logger.error(f"Failed to parse wallet pairs: {e}")
-            logger.error("Format should be: 'addr1a,addr1b;addr2a,addr2b' or path to JSON file")
-            sys.exit(1)
+        logger.warning("No wallet pairs provided - running in demo/test mode")
+        logger.info("To trade, provide wallet pairs with --wallet-pairs")
     
     # Create strategy instance
     config = Config()
